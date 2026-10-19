@@ -5,8 +5,9 @@
   "description": "Keyora - Premium Speed Typing & Precision Training Platform",
   "scripts": {
     "dev": "node --max-http-header-size=131072 ./node_modules/next/dist/bin/next dev -p 3001",
-    "build": "next build",
+    "build": "prisma generate && prisma db push --accept-data-loss && next build",
     "start": "node --max-http-header-size=131072 ./node_modules/next/dist/bin/next start",
+    "postinstall": "prisma generate",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
