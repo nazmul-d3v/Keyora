@@ -100,7 +100,7 @@ keyora/
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/keyora.git
+git clone https://github.com/nazmul-d3v/Keyora.git
 cd keyora
 
 # Install dependencies
@@ -120,7 +120,7 @@ npx prisma db seed
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3001](http://localhost:3001) in your browser.
 
 ---
 
