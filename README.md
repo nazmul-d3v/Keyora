@@ -3,7 +3,7 @@
 > **Precision Speed Typing & Competitive Trainer**  
 > Engineered for developers, competitive typists, and keyboard enthusiasts.
 
-🌐 **Live Demo (Vercel):** [https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app](https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app)
+🌐 **Live Demo (Vercel):** [https://keyora-nazmul-s-team.vercel.app](https://keyora-nazmul-s-team.vercel.app)
 
 ![Keyora Logo](/public/logo.svg)
 
@@ -123,7 +123,7 @@ npx prisma db seed
 npm run dev
 ```
 - **Local Dev:** [http://localhost:3001](http://localhost:3001)
-- **Live Vercel:** [https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app](https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app)
+- **Live Vercel:** [https://keyora-nazmul-s-team.vercel.app](https://keyora-nazmul-s-team.vercel.app)
 
 ---
 
