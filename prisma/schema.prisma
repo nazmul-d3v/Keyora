@@ -1,0 +1,99 @@
+// Prisma Schema for Keyora Speed Typing Platform
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String         @id @default(cuid())
+  name            String?
+  email           String?        @unique
+  emailVerified   DateTime?
+  password        String?
+  image           String?
+  role            String         @default("user") // "user" | "admin"
+  bio             String?
+  theme           String         @default("cyber-neon")
+  keyboardLayout  String         @default("qwerty")
+  soundEnabled    Boolean        @default(true)
+  soundType       String         @default("cherry-blue")
+  soundVolume     Float          @default(0.5)
+  caretStyle      String         @default("smooth-line") // "smooth-line" | "block" | "underline" | "pulse"
+  bestWpm         Float          @default(0)
+  avgWpm          Float          @default(0)
+  avgAccuracy     Float          @default(0)
+  testsCompleted  Int            @default(0)
+  totalTimeTyped  Int            @default(0) // seconds
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  tests           TestResult[]
+  leaderboard     LeaderboardEntry[]
+}
+
+model Passage {
+  id          String       @id @default(cuid())
+  title       String
+  content     String
+  language    String       @default("english") // "english" | "code" | "quotes" | "numbers" | "spanish"
+  difficulty  String       @default("medium")  // "easy" | "medium" | "hard"
+  category    String       @default("general") // "prose" | "javascript" | "python" | "quotes" | "literature"
+  source      String?
+  wordCount   Int
+  createdAt   DateTime     @default(now())
+
+  tests       TestResult[]
+}
+
+model TestResult {
+  id           String      @id @default(cuid())
+  userId       String?
+  user         User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  passageId    String?
+  passage      Passage?    @relation(fields: [passageId], references: [id], onDelete: SetNull)
+  wpm          Float
+  rawWpm       Float
+  accuracy     Float
+  consistency  Float       @default(100)
+  duration     Int         // seconds
+  mode         String      @default("time") // "time" | "words" | "quote" | "custom"
+  language     String      @default("english")
+  difficulty   String      @default("medium")
+  wordsCount   Int         @default(0)
+  errorsCount  Int         @default(0)
+  charCount    Int         @default(0)
+  timelineJson String?     // Serialized JSON for second-by-second WPM and error progression
+  createdAt    DateTime    @default(now())
+
+  leaderboard  LeaderboardEntry?
+}
+
+model LeaderboardEntry {
+  id           String      @id @default(cuid())
+  userId       String
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  testResultId String      @unique
+  testResult   TestResult  @relation(fields: [testResultId], references: [id], onDelete: Cascade)
+  wpm          Float
+  accuracy     Float
+  duration     Int
+  mode         String      @default("time")
+  language     String      @default("english")
+  createdAt    DateTime    @default(now())
+
+  @@index([mode, duration, wpm(sort: Desc)])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expires   DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
