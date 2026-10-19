@@ -3,6 +3,8 @@
 > **Precision Speed Typing & Competitive Trainer**  
 > Engineered for developers, competitive typists, and keyboard enthusiasts.
 
+🌐 **Live Demo (Vercel):** [https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app](https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app)
+
 ![Keyora Logo](/public/logo.svg)
 
 Keyora is an elite speed typing trainer and competitive leaderboard platform built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Prisma ORM**, and the **HTML5 Web Audio API**.
@@ -120,7 +122,8 @@ npx prisma db seed
 ```bash
 npm run dev
 ```
-Open [http://localhost:3001](http://localhost:3001) in your browser.
+- **Local Dev:** [http://localhost:3001](http://localhost:3001)
+- **Live Vercel:** [https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app](https://keyora-7vh4fzf0a-nazmul-s-team.vercel.app)
 
 ---
 
