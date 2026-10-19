@@ -27,8 +27,9 @@ yarn-error.log*
 .env
 
 # SQLite database
-/prisma/*.db
 /prisma/*.db-journal
+/prisma/*.db-wal
+/prisma/*.db-shm
 
 # TypeScript
 *.tsbuildinfo
@@ -37,3 +38,5 @@ next-env.d.ts
 # User Uploads
 /public/uploads/*
 !/public/uploads/.gitkeep
+!/public/uploads/avatar_*
+

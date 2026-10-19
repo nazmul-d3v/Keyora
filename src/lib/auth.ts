@@ -38,9 +38,18 @@ export const authOptions: NextAuthOptions = {
             role: user.role,
           };
         } catch (error: unknown) {
-          // Fallback demo user if database is unseeded
+          // If the error was explicitly thrown by credential validation, rethrow it
+          if (error instanceof Error && (
+            error.message === 'No user found with this email.' ||
+            error.message === 'Incorrect password.' ||
+            error.message === 'Please enter both email and password.'
+          )) {
+            throw error;
+          }
+
+          // Fallback demo user if database is unseeded or during cold start
           if (
-            credentials.email === 'demo@keyora.io' &&
+            credentials.email.toLowerCase() === 'demo@keyora.io' &&
             credentials.password === 'keyora123'
           ) {
             return {
@@ -51,7 +60,9 @@ export const authOptions: NextAuthOptions = {
               role: 'user',
             };
           }
-          throw error;
+
+          console.error('[NextAuth authorize error]:', error);
+          throw new Error('Database service error. Please try again in a few moments.');
         }
       },
     }),

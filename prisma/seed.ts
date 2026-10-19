@@ -41,6 +41,25 @@ async function main() {
     },
   });
 
+  // Nazmul Admin & User Account
+  await prisma.user.upsert({
+    where: { email: 'hello.nazzmul@gmail.com' },
+    update: {},
+    create: {
+      name: 'Nazmul',
+      email: 'hello.nazzmul@gmail.com',
+      password: '$2a$10$cf7r4a.wd2OzUxfC/wSXNeqe8epY.mfptD.QYgYXmDLdvI.a9UDzK',
+      image: '/uploads/avatar_4pmrmdt0_1792425416389.jpg',
+      bio: 'Keyora Creator & Speed Typing Enthusiast',
+      bestWpm: 26.8,
+      avgWpm: 15.3,
+      avgAccuracy: 100,
+      testsCompleted: 5,
+      totalTimeTyped: 120,
+    },
+  });
+
+
   // Seed Passages
   const passagesData = [
     {
